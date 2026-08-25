@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RailFlex - Smarter Seats</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- ===================================== -->
+    <!--          PAGE 1: LANDING PAGE         -->
+    <!-- ===================================== -->
+    <div id="landing-page">
+        <!-- Top Utility Bar -->
+        <div class="top-utility-bar">
+            <span>24-Aug-2026 [22:09:07]</span>
+            <div class="font-resizers">
+                <span onclick="resizeFont('decrease')">A-</span> 
+                <span onclick="resizeFont('reset')">A</span> 
+                <span onclick="resizeFont('increase')">A+</span>
+            </div>
+            <span>हिंदी</span>
+        </div>
+
+        <!-- Main Navigation Header -->
+        <header class="main-header">
+            <div class="logo-left"><div class="circle-logo"></div></div>
+            
+            <nav class="nav-links">
+                <a href="#" onclick="location.reload();"><i class="fas fa-home"></i></a>
+                <button class="btn-dark-blue" onclick="openAuthModal('login')">LOGIN / REGISTER</button>
+                <button class="btn-google" onclick="googleSignIn()">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google">
+                    Sign In
+                </button>
+                <a href="#" class="active">TRAINS</a>
+                <a href="#" onclick="alert('Meals module coming soon!')">MEALS</a>
+                <a href="#" class="btn-dark-blue" onclick="alert('Loyalty program active!')">LOYALTY</a>
+                <a href="#" onclick="alert('E-Wallet balance: ₹2,450')">E-WALLET</a>
+            </nav>
+
+            <!-- Upper Right Profile Icon Area -->
+            <div class="profile-container" onclick="openAuthModal('login')">
+                <div class="profile-avatar"><i class="fas fa-user"></i></div>
+                <div class="profile-info">
+                    <span id="nav-username">Guest</span>
+                    <small>Click to Login</small>
+                </div>
+            </div>
+        </header>
+
+        <!-- Beta Alert Banner -->
+        <div class="beta-banner">
+            <span class="new-badge">NEW</span>
+            <p>Explore the beta version of our new Smart Seat Allocation website and give your valuable suggestions</p>
+        </div>
+
+        <!-- Hero Section (Train Background) -->
+        <main class="hero-section">
+            <div class="hero-text-overlay">
+                <h1>INDIAN RAILWAYS</h1>
+                <p>Safety | Security | Punctuality</p>
+            </div>
+
+            <!-- The Iconic Booking Widget -->
+            <div class="booking-widget">
+                <div class="widget-tabs">
+                    <div class="tab active" id="tab-pnr" onclick="switchWidgetTab('pnr')"><i class="fas fa-check-square"></i> PNR STATUS</div>
+                    <div class="tab" id="tab-charts" onclick="switchWidgetTab('charts')"><i class="fas fa-list-alt"></i> CHARTS / VACANCY</div>
+                </div>
+
+                <div class="widget-body">
+                    <div class="widget-title">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1071/1071063.png" alt="logo" class="tiny-logo"> 
+                        <h2 id="widget-heading">BOOK TICKET</h2>
+                    </div>
+
+                    <!-- PNR / Search Dynamic Container -->
+                    <div id="widget-form-content">
+                        <div class="form-row">
+                            <div class="input-box">
+                                <i class="fas fa-location-arrow"></i><input type="text" id="landing-from" placeholder="From (e.g. New Delhi)">
+                            </div>
+                            <div class="swap-icon" onclick="swapStations()"><i class="fas fa-exchange-alt"></i></div>
+                            <div class="input-box">
+                                <i class="fas fa-map-marker-alt"></i><input type="text" id="landing-to" placeholder="To (e.g. Varanasi)">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="input-box">
+                                <i class="fas fa-calendar-alt"></i><input type="date" id="landing-date" value="2026-08-24">
+                            </div>
+                            <div class="input-box">
+                                <i class="fas fa-suitcase"></i>
+                                <select id="landing-class">
+                                    <option>All Classes</option>
+                                    <option>2A - Second AC</option>
+                                    <option>3A - Third AC</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="checkbox-grid">
+                            <label><input type="checkbox"> PWD Concession</label>
+                            <label><input type="checkbox"> Flexible With Date</label>
+                            <label><input type="checkbox"> Pass Concession</label>
+                        </div>
+                    </div>
+
+                    <button class="search-trains-btn" onclick="goToBooking()">Search Trains</button>
+                </div>
+            </div>
+        </main>
+<!-- ===================================== -->
+        <!--   PROMOTIONAL SLIDER (RELIABLE IMAGES)-->
+        <!-- ===================================== -->
+        <section class="promo-slider-section">
+            <h2 class="slider-section-title">Have you not found the right one? Find a service suitable for you here.</h2>
+            <div class="slider-container">
+                <!-- Slide 1 -->
+                <div class="slide active" onclick="handleSlideClick('Smart Allocation')">
+                    <img src="https://picsum.photos/id/1033/1200/800" alt="Smart Allocation">
+                    <div class="slide-content">
+                        <h3>RailFlex Smart Segment Allocation</h3>
+                        <p>Maximize seat utilization by splitting long routes into optimal segments automatically.</p>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="slide" onclick="handleSlideClick('Bharat Gaurav Tourist Train')">
+                    <img src="https://picsum.photos/id/1070/1200/800" alt="Tourist Train">
+                    <div class="slide-content">
+                        <h3>Bharat Gaurav & Luxury Tourist Trains</h3>
+                        <p>Explore India's rich cultural heritage with all-inclusive curated tour packages.</p>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="slide" onclick="handleSlideClick('E-Catering')">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=1200" alt="E-Catering">
+                    <div class="slide-content">
+                        <h3>Order Food on Train via E-Catering</h3>
+                        <p>Get fresh, restaurant-quality meals delivered right to your seat during your journey.</p>
+                    </div>
+                </div>
+
+                <button class="slider-btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+                <button class="slider-btn next-btn" onclick="moveSlide(1)">&#10095;</button>
+            </div>
+
+            <div class="slider-dots">
+                <span class="dot active" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+            </div>
+        </section>
+        <!-- ===================================== -->
+        <!--      HOLIDAYS & DESTINATIONS GRID     -->
+        <!-- ===================================== -->
+        <section class="holidays-section">
+            <h2 class="section-main-title">HOLIDAYS</h2>
+            
+            <div class="holidays-grid">
+                <!-- Card 1: Maharajas' Express -->
+                <div class="holiday-card" onclick="handleHolidayClick('Maharajas Express')">
+                    <div class="holiday-img-box">
+                        <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&q=80&w=800" alt="Taj Mahal & Heritage">
+                    </div>
+                    <div class="holiday-info">
+                        <h3>Maharajas' Express & Heritage</h3>
+                        <p>Redefining Royalty, Luxury and Comfort, Maharajas' Express takes you on a sojourn to the era of bygone stately splendour and majestic monuments like the Taj Mahal.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2: Kerala Backwaters -->
+                <div class="holiday-card" onclick="handleHolidayClick('Kerala Backwaters')">
+                    <div class="holiday-img-box">
+                        <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&q=80&w=800" alt="Kerala Backwaters">
+                    </div>
+                    <div class="holiday-info">
+                        <h3>Best of India: Kerala Backwaters</h3>
+                        <p>Experience God's Own Country. Cruise through serene palm-fringed backwaters, lush green tea plantations in Munnar, and pristine beaches with exclusive rail tour packages.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3: Himalayan / Domestic Tour -->
+                <div class="holiday-card" onclick="handleHolidayClick('Domestic Packages')">
+                    <div class="holiday-img-box">
+                        <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&q=80&w=800" alt="Himalayas">
+                    </div>
+                    <div class="holiday-info">
+                        <h3>Majestic Himalayan Escapes</h3>
+                        <p>Explore the snow-capped peaks, serene lakes, and valleys of Kashmir and Ladakh. Discover incredible India through tailored rail-air tour packages.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+     <!-- ===================================== -->
+    <!--         PAGE 2: SEAT MAP PAGE         -->
+    <!-- ===================================== -->
+    <div id="booking-page" style="display: none;">
+        
+        <!-- Search Widget -->
+        <div class="search-widget">
+            <div class="search-inputs">
+                <div class="input-group"><label>FROM</label><input type="text" id="source" placeholder="New Delhi (NDLS)"></div>
+                <div class="divider"></div>
+                <div class="input-group"><label>TO</label><input type="text" id="destination" placeholder="Varanasi (BSB)"></div>
+                <div class="divider"></div>
+                <div class="input-group"><label>DATE</label><input type="date" id="date"></div>
+                <button class="search-btn" onclick="searchTrains()">Search</button>
+            </div>
+        </div>
+
+        <!-- Main Workspace: Left (Info) & Right (Seat Map) -->
+        <div class="booking-workspace">
+            <!-- LEFT SIDE: Journey & Train Details (Info box removed) -->
+            <div class="left-info-panel">
+                <div class="train-header-card">
+                    <div class="train-title-row">
+                        <h3 id="train-title-display">12581 • Shiv Ganga Exp</h3><span class="badge">2A</span>
+                    </div>
+                    <p class="route-info" id="route-info-display">NDLS 20:05 ➔ BSB 06:10</p>
+                </div>
+            
+                 
+            </div>
+
+            <!-- RIGHT SIDE: Seat Map Container -->
+            <div class="coach-container">
+                <div class="legend">
+                    <span class="legend-item"><div class="box available"></div> Available</span>
+                    <span class="legend-item"><div class="box short"></div> Short Journey</span>
+                    <span class="legend-item"><div class="box medium"></div> Medium Journey</span>
+                    <span class="legend-item"><div class="box booked"></div> Fully Booked</span>
+                </div>
+
+                <div class="seat-map">
+                    <div class="left-side">
+                        <div class="cabin left-cabin">
+                            <div class="seat available" onclick="selectSeat(this)"><span class="seat-num">1</span><span class="berth-type">LOWER</span></div>
+                            <div class="seat available" onclick="selectSeat(this)"><span class="seat-num">2</span><span class="berth-type">UPPER</span></div>
+                            <div class="seat available" onclick="selectSeat(this)"><span class="seat-num">3</span><span class="berth-type">LOWER</span></div>
+                            <div class="seat available" onclick="selectSeat(this)"><span class="seat-num">4</span><span class="berth-type">UPPER</span></div>
+                        </div>
+                        <div class="cabin left-cabin">
+                            <div class="seat available" onclick="selectSeat(this)"><span class="seat-num">7</span><span class="berth-type">LOWER</span></div>
+                            <div class="seat available" onclick="selectSeat(this)"><span class="seat-num">8</span><span class="berth-type">UPPER</span></div>
+                            <div class="seat available" onclick="selectSeat(this)"><span class="seat-num">9</span><span class="berth-type">LOWER</span></div>
+                            <div class="seat available" onclick="selectSeat(this)"><span class="seat-num">10</span><span class="berth-type">UPPER</span></div>
+                        </div>
+                    </div>
+
+                    <div class="aisle"></div>
+
+                    <div class="right-side">
+                        <div class="cabin right-cabin">
+                            <div class="seat available" onclick="selectSeat(this)"><span class="seat-num">5</span><span class="berth-type">SIDE LOWER</span></div>
+                            <div class="seat available" onclick="selectSeat(this)"><span class="seat-num">6</span><span class="berth-type">SIDE UPPER</span></div>
+                        </div>
+                        <div class="cabin right-cabin">
+                            <div class="seat available" onclick="selectSeat(this)"><span class="seat-num">11</span><span class="berth-type">SIDE LOWER</span></div>
+                            <div class="seat available" onclick="selectSeat(this)"><span class="seat-num">12</span><span class="berth-type">SIDE UPPER</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    <!-- BELOW BOTH: Train Visual Selector with More Coaches -->
+        <div class="train-visual-wrapper">
+            <div class="train-track">
+                <!-- Locomotive Engine -->
+                <div class="train-car engine">
+                    <div class="car-label">WDP-4D</div>
+                    <div class="loco-body">
+                        <div class="cowcatcher"></div>
+                        <div class="loco-cab"><div class="cab-window"></div><div class="cab-door"></div></div>
+                        <div class="loco-hood">
+                            <div class="yellow-stripe"></div>
+                            <div class="hood-grills"><div class="grill"></div><div class="grill"></div><div class="grill"></div></div>
+                            <div class="exhaust-vent"></div>
+                        </div>
+                    </div>
+                    <div class="undercarriage loco-undercarriage">
+                        <div class="loco-bogie"><div class="wheel"></div><div class="wheel"></div><div class="wheel"></div></div>
+                        <div class="loco-bogie"><div class="wheel"></div><div class="wheel"></div><div class="wheel"></div></div>
+                    </div>
+                </div>
+
+                <!-- Expanded Coach Rake -->
+                <div class="train-car coach active" onclick="switchCoach(this, 'GS')"><div class="car-label">GS</div><div class="car-body"><div class="large-window"></div><div class="large-window"></div></div><div class="undercarriage"><div class="bogie"><div class="wheel"></div><div class="wheel"></div></div><div class="bogie"><div class="wheel"></div><div class="wheel"></div></div></div></div>
+                <div class="train-car coach" onclick="switchCoach(this, 'A1')"><div class="car-label">A1</div><div class="car-body"><div class="large-window"></div><div class="large-window"></div></div><div class="undercarriage"><div class="bogie"><div class="wheel"></div><div class="wheel"></div></div><div class="bogie"><div class="wheel"></div><div class="wheel"></div></div></div></div>
+                <div class="train-car coach" onclick="switchCoach(this, 'A2')"><div class="car-label">A2</div><div class="car-body"><div class="large-window"></div><div class="large-window"></div></div><div class="undercarriage"><div class="bogie"><div class="wheel"></div><div class="wheel"></div></div><div class="bogie"><div class="wheel"></div><div class="wheel"></div></div></div></div>
+                <div class="train-car coach" onclick="switchCoach(this, 'B1')"><div class="car-label">B1</div><div class="car-body"><div class="large-window"></div><div class="large-window"></div></div><div class="undercarriage"><div class="bogie"><div class="wheel"></div><div class="wheel"></div></div><div class="bogie"><div class="wheel"></div><div class="wheel"></div></div></div></div>
+                <div class="train-car coach" onclick="switchCoach(this, 'B2')"><div class="car-label">B2</div><div class="car-body"><div class="large-window"></div><div class="large-window"></div></div><div class="undercarriage"><div class="bogie"><div class="wheel"></div><div class="wheel"></div></div><div class="bogie"><div class="wheel"></div><div class="wheel"></div></div></div></div>
+                <div class="train-car coach" onclick="switchCoach(this, 'S1')"><div class="car-label">S1</div><div class="car-body"><div class="large-window"></div><div class="large-window"></div></div><div class="undercarriage"><div class="bogie"><div class="wheel"></div><div class="wheel"></div></div><div class="bogie"><div class="wheel"></div><div class="wheel"></div></div></div></div>
+                <div class="train-car coach" onclick="switchCoach(this, 'S2')"><div class="car-label">S2</div><div class="car-body"><div class="large-window"></div><div class="large-window"></div></div><div class="undercarriage"><div class="bogie"><div class="wheel"></div><div class="wheel"></div></div><div class="bogie"><div class="wheel"></div><div class="wheel"></div></div></div></div>
+            </div>
+        </div>
+    </div>
+    <!-- Auth Modal Popup (Login / Register Tabs) -->
+    <div id="auth-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-card">
+            <div class="modal-tabs-header">
+                <div id="modal-tab-login" class="modal-tab active" onclick="switchAuthMode('login')">Sign In</div>
+                <div id="modal-tab-register" class="modal-tab" onclick="switchAuthMode('register')">Register</div>
+            </div>
+
+            <h3 id="auth-title">RailFlex Secure Login</h3>
+            <p id="auth-subtitle">Enter your credentials to access smart reservations.</p>
+            
+            <input type="text" placeholder="Username or Email" id="auth-user">
+            <input type="password" placeholder="Password" id="auth-pass">
+            <input type="password" placeholder="Confirm Password" id="auth-pass-confirm" style="display: none;">
+
+            <button class="search-trains-btn" id="auth-submit-btn" onclick="submitAuth()">Login</button>
+            <button class="close-modal-btn" onclick="closeAuthModal()">Cancel</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
